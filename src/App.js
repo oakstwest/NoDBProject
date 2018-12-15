@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Fortune from './components/Fortune';
 import Image from './components/Image';
-import StarWars from './components/StarWars';
+import Jokes from './components/Jokes';
+
 class App extends Component {
   constructor() {
     super();
@@ -22,13 +22,7 @@ class App extends Component {
 
   }
 
-  //  // componentDidMount() {
-  //     axios.get('/api/zoltar')
-  //       .then(response => {
-  //         console.log(response)
-  //         this.setState({ zoltar: response.data })
-  //       })
-  //   }
+
   getFortune() {
     axios.get('/api/zoltar/${this.}')
   }
@@ -71,10 +65,7 @@ class App extends Component {
 
 
   render() {
-    //     let mappedzoltar = this.state.zoltar.map((zoltar, i) => {
-    //       return <div key={i}>{zoltar}</div>
-    //     })
-    // // 
+
     let displayedFortune = this.state.customFortune.map((fortune, i) => {
       return (
         <Fortune fortune={fortune} onDelete={this.deleteFortune} id={i} />
@@ -92,18 +83,19 @@ class App extends Component {
         <hr />
 
         <input name='createInput' onChange={e => this.handleChange(e)} type="text" value={this.state.createInput} />
+
         <button onClick={() => this.createFortune()}>Create Your Fortune</button>
         <hr />
 
-        {/* <input name='getInput' onChange={e => this.handleChange(e)} />
-        <input name='getInput' onChange={e => this.handleChange(e)} />
-        <button onClick={() => this.getFortune}>Get your Fortune</button> */}
+        <button onClick={() => this.deleteFortune()}>Delete This Misfortune </button>
+
         <hr />
         {displayedFortune}
+        <Jokes />
         <Image />
         <Image />
         <Image />
-        <StarWars />
+
       </div>
 
     );
